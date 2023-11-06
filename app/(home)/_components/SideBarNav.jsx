@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
 
-function SideBarNav() {
+function SideBarNav({toggleSideBar}) {
     const pathName=usePathname();
     console.log(pathName)
     const menuList=[
@@ -51,7 +51,7 @@ function SideBarNav() {
                 p-4 px-6 text-gray-500
                 hover:bg-gray-100 cursor-pointer
                 ${pathName==item.path?'bg-purple-50 text-purple-800':null}`}
-                onClick={()=>setActiveIndex(index)}>
+                onClick={()=>{setActiveIndex(index);toggleSideBar(false)}}>
                     <item.icon/>
                     <h2>{item.name}</h2>
                 </Link>

@@ -3,7 +3,9 @@ import React, { useEffect } from 'react'
 import SearchBar from './../_components/SearchBar'
 import { UserButton, useUser } from '@clerk/nextjs'
 import { usePathname, useRouter } from 'next/navigation';
-function Header() {
+import { AlignLeft } from 'lucide-react';
+import SideBarNav from './SideBarNav';
+function Header({toggleSideBar}) {
     const {user}=useUser();
     const router=useRouter();
     
@@ -14,6 +16,7 @@ function Header() {
   return (
     <div className='md:ml-64 p-6 border-b 
     flex items-center justify-between'>
+      <AlignLeft className='md:hidden' onClick={()=>toggleSideBar(true)}/>
         <SearchBar/>
 
        {!user?

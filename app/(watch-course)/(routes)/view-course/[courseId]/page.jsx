@@ -44,6 +44,13 @@ function ViewCourse({params}) {
             <FullVideoPlayer
              userCourse={userCourse}
               activeChapter={activeChapter} />
+
+              <div className='md:hidden'>
+              {course?  <ChapterNav course={course}
+            userCourse={userCourse}
+            setActiveChapter={(chapter)=>setActiveChapter(chapter)} />
+            :null}
+              </div>
         </div>
         </CompletedChapterContext.Provider>
     </div>
