@@ -39,10 +39,11 @@ function SideBarNav({toggleSideBar}) {
     <div className='h-full bg-white border-r 
     flex flex-col overflow-y-auto shadow-md'>
         <div className='p-5 border-b z-50'>
-            <Image src='/logo.svg'
+            <Image src='/logo2.jpg'
             alt='logo'
-            width={170}
-            height={100}
+            className='rounded-full'
+            width={60}
+            height={60}
             />
         </div>
         <div className='flex flex-col '>
