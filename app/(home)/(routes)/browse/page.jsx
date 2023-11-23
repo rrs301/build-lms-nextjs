@@ -1,17 +1,34 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CategoryFilter from './_components/CategoryFilter'
 import {getCourseList} from './../../../_services/index'
 import CourseList from './_components/CourseList'
+import GlobalApi from './../../../_services/GlobalApi';
+import { useUser } from '@clerk/nextjs'
+import { UserMembershipContext } from '../../../_context/UserMembershipContext'
 function Browse() {
 
   const [courses,setCourses]=useState([]);
   const [coursesOrg,setCoursesOrg]=useState([]);
-
+  const {user}=useUser();
+  const {userMembership,setUserMembership}=useContext(UserMembershipContext);
   useEffect(()=>{
     getCourses()
-  },[])
+    user&&getUserSubscription_();
+  },[user])
 
+  const getUserSubscription_= ()=>{
+     GlobalApi.getUserSubscription().then(resp=>{
+      console.log(resp.data.data)
+     const data= resp.data.data.find(item=>item.payer_email==user.primaryEmailAddress.emailAddress);
+
+     if(data)
+      {
+        console.log(" Membership")
+        setUserMembership(true)
+      }
+    })
+  }
   const getCourses=()=>{
     getCourseList().then(resp=>{
       console.log(resp);

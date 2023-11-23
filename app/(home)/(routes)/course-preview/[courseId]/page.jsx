@@ -39,7 +39,7 @@ function CoursePreview({params}) {
           <CourseDetails courseDetail={courseDetail}/>
         </div>
         <div className=' mt-5 md:mt-0'>
-          <OptionSection/>
+          <OptionSection courseDetail={courseDetail}/>
           <EnrollmentSection courseDetail={courseDetail}
           userCourse={userCourse} />
         </div>

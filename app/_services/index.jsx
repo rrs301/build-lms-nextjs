@@ -16,6 +16,8 @@ export const getCourseList=async()=>{
           totalChapters
           tag
           youtubeUrl
+          demoUrl
+          sourceCode
         }
       }    
     `
@@ -42,6 +44,8 @@ export const getCourseById=async(id,userEmail)=>{
       id
       free
       author
+      sourceCode
+      demoUrl
       totalChapters
       youtubeUrl
       banner {
@@ -143,3 +147,5 @@ export const GetUserCourseList=async(userEmail)=>{
   return result;
 
 }
+
+

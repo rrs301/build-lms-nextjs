@@ -25,7 +25,7 @@ function SideBarNav({toggleSideBar}) {
             id:3,
             name:'Upgrade',
             icon:Shield,
-            path:'/upgrade'
+            path:'/membership'
         },
         {
             id:4,
