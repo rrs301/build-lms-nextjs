@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const token = process.env.NEXT_PUBLIC_BUY_ME_COFFEE; // Replace with your actual bearer token
-const apiUrl = 'https://developers.buymeacoffee.com/api/v1/subscriptions?status=active'; // Replace with the API endpoint URL
+const apiUrl = 'https://developers.buymeacoffee.com/api/v1/subscriptions?status=active&page='; // Replace with the API endpoint URL
 
 const headers = {
   'Authorization': `Bearer ${token}`,
@@ -10,8 +10,11 @@ const headers = {
 };
 
 
-const getUserSubscription=()=> axios.get(apiUrl, { headers })
+const getUserSubscription=(pageNumber)=> axios.get(apiUrl+pageNumber, { headers })
+
+const getAllSubscription=(url)=>axios.get(apiUrl,{ headers })
 
 export default{
-    getUserSubscription
+    getUserSubscription,
+    getAllSubscription
 }
