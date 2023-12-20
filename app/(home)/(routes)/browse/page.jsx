@@ -6,8 +6,9 @@ import CourseList from './_components/CourseList'
 import GlobalApi from './../../../_services/GlobalApi';
 import { useUser } from '@clerk/nextjs'
 import { UserMembershipContext } from '../../../_context/UserMembershipContext'
+import { useAptabase } from '@aptabase/react'
 function Browse() {
-
+  const { trackEvent } = useAptabase();
   const [courses,setCourses]=useState([]);
   const [coursesOrg,setCoursesOrg]=useState([]);
   const {user}=useUser();
@@ -15,6 +16,7 @@ function Browse() {
   useEffect(()=>{
     getCourses()
     user&&getUserSubscription_();
+    
   },[user])
 
   const getUserSubscription_= ()=>{
@@ -30,6 +32,7 @@ function Browse() {
     })
   }
   const getCourses=()=>{
+    trackEvent('user-home', { userEmail:user?.primaryEmailAddress?.emailAddress });
     getCourseList().then(resp=>{
       console.log(resp);
       setCourses(resp.courseLists);

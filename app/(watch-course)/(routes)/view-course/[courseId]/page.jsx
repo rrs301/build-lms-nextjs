@@ -5,12 +5,15 @@ import FullVideoPlayer from './_components/FullVideoPlayer'
 import { UserButton, useUser } from '@clerk/nextjs'
 import { getCourseById } from '../../../../_services';
 import {CompletedChapterContext} from '../../../../../app/_context/CompletedChapterContext'
+import { useAptabase } from '@aptabase/react'
 function ViewCourse({params}) {
     const {user}=useUser();
     const [course,setCourse]=useState([]);
     const [userCourse,setUserCourse]=useState();
     const [activeChapter,setActiveChapter]=useState();
     const [completedChapter,setCompletedChapter]=useState();
+
+  const { trackEvent } = useAptabase();
 
     useEffect(()=>{
        user? getCourse():null;
@@ -24,7 +27,11 @@ function ViewCourse({params}) {
                 setCourse(resp.courseList);
                 setUserCourse(resp?.userEnrollCourses[0]);
                 setCompletedChapter(resp?.userEnrollCourses[0]?.completedChapter)
-            })
+            });
+        trackEvent("Watch-Course",{
+          courseName:course?.name,
+          userEmail:user?.primaryEmailAddress?.emailAddress
+        })
     }
   return course?.name&&(
     <div className=''>

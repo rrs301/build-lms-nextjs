@@ -4,6 +4,7 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import {UserMembershipContext} from './_context/UserMembershipContext'
 import { useState } from 'react'
+import { AptabaseProvider } from '@aptabase/react'
 const inter = Outfit({ subsets: ['latin'] })
 
 // export const metadata = {
@@ -18,7 +19,11 @@ export default function RootLayout({ children }) {
       <UserMembershipContext.Provider 
       value={{userMembership,setUserMembership}}>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <AptabaseProvider appKey="A-US-6917308331">
+        {children}
+        </AptabaseProvider>
+        </body>
     </html>
     </UserMembershipContext.Provider>
     </ClerkProvider>

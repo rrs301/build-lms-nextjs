@@ -7,10 +7,12 @@ import OptionSection from './_components/OptionSection'
 import EnrollmentSection from './_components/EnrollmentSection'
 import { useUser } from '@clerk/nextjs'
 import Image from 'next/image'
+import { useAptabase } from '@aptabase/react'
 
 function CoursePreview({params}) {
   const [courseDetail,setCourseDetails]=useState([]);
   const [userCourse,setUserCourse]=useState([]);
+  const { trackEvent } = useAptabase();
 
   const {user}=useUser();
   useEffect(()=>{
@@ -24,6 +26,11 @@ function CoursePreview({params}) {
       setCourseDetails(resp.courseList);
       setUserCourse(resp?.userEnrollCourses[0])
     })
+
+    trackEvent('course-preview',{
+      courseName:courseDetail?.name,
+      email:user?.primaryEmailAddress?.emailAddress
+    });
   }
   return courseDetail?.name&&(
     <div className=''>
