@@ -25,7 +25,6 @@ function OptionSection(courseDetail) {
         },
     ]
     const router=useRouter();
-    console.log(courseDetail)
     const {userMembership,setUserMembership}=
     useContext(UserMembershipContext);
   return (

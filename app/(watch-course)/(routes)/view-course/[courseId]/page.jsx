@@ -23,7 +23,6 @@ function ViewCourse({params}) {
         await getCourseById(params?.courseId,
             user.primaryEmailAddress.emailAddress)
             .then(resp=>{
-                console.log(resp?.userEnrollCourses[0]?.completedChapter);
                 setCourse(resp.courseList);
                 setUserCourse(resp?.userEnrollCourses[0]);
                 setCompletedChapter(resp?.userEnrollCourses[0]?.completedChapter)

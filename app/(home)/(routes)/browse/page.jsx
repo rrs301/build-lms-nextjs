@@ -21,19 +21,19 @@ function Browse() {
 
   const getUserSubscription_= ()=>{
      GlobalApi.getUserSubscription().then(resp=>{
-      console.log(resp.data.data)
+     
      const data= resp.data.data.find(item=>item.payer_email==user.primaryEmailAddress.emailAddress);
 
      if(data)
       {
-        console.log(" Membership")
+        
         setUserMembership(true)
       }
     })
   }
   const getCourses=()=>{
     getCourseList().then(resp=>{
-      console.log(resp);
+     
       setCourses(resp.courseLists);
       setCoursesOrg(resp.courseLists)
     })

@@ -3,7 +3,6 @@ import React, { useContext } from 'react'
 import { CompletedChapterContext } from '../../../../../_context/CompletedChapterContext';
 import {markChapterCompleted} from './../../../../../_services/index'
 function FullVideoPlayer({userCourse, activeChapter }) {
-    console.log(userCourse);
     const {completedChapter,setCompletedChapter}=
     useContext(CompletedChapterContext)
 
@@ -24,10 +23,8 @@ function FullVideoPlayer({userCourse, activeChapter }) {
         ):setCompletedChapter([ {
             chapterId:activeChapter?.chapterNumber+""
         }]);
-        console.log(completedChapter);
 
        await markChapterCompleted(userCourse?.id,activeChapter?.chapterNumber).then(resp=>{
-        console.log(resp);
        })
 
      }

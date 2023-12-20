@@ -3,7 +3,7 @@ import { Inter,Outfit } from 'next/font/google'
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import {UserMembershipContext} from './_context/UserMembershipContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AptabaseProvider } from '@aptabase/react'
 const inter = Outfit({ subsets: ['latin'] })
 
@@ -14,11 +14,33 @@ const inter = Outfit({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
   const [userMembership,setUserMembership]=useState(false);
+
+
+   useEffect(()=>{
+    runOneSignal();
+  },[])
+  const runOneSignal=async()=>{
+  
+    // await OneSignal.init({ appId: '48bd7190-9366-4078-8ea9-6c2fcfa80703', allowLocalhostAsSecureOrigin: true});
+    // OneSignal.Slidedown.promptPush();
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(function(OneSignal) {
+  OneSignal.init({
+    appId: "48bd7190-9366-4078-8ea9-6c2fcfa80703",
+    safari_web_id: "web.onesignal.auto.69735df3-8f8c-40d7-a01f-205a16828de8",
+    allowLocalhostAsSecureOrigin: true,
+    notifyButton: {
+      enable: true,
+    },
+  });
+});
+  }
   return (
     <ClerkProvider>
       <UserMembershipContext.Provider 
       value={{userMembership,setUserMembership}}>
     <html lang="en">
+      
       <body className={inter.className}>
       <AptabaseProvider appKey="A-US-6917308331">
         {children}

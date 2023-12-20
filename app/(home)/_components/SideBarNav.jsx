@@ -7,7 +7,6 @@ import React, { useState } from 'react'
 
 function SideBarNav({toggleSideBar}) {
     const pathName=usePathname();
-    console.log(pathName)
     const menuList=[
         {
             id:1,

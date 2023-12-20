@@ -22,7 +22,6 @@ function CoursePreview({params}) {
   const getCourse=()=>{
     getCourseById(params.courseId,user?.primaryEmailAddress?.emailAddress)
     .then(resp=>{
-      console.log(resp);
       setCourseDetails(resp.courseList);
       setUserCourse(resp?.userEnrollCourses[0])
     })

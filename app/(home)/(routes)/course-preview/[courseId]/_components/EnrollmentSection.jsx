@@ -9,18 +9,15 @@ function EnrollmentSection({courseDetail,userCourse}) {
     const router=useRouter();
   const {userMembership,setUserMembership}=
   useContext(UserMembershipContext);
-    console.log("courseDetail?.totalChapters",courseDetail?.totalChapters)
     const enrollCourse=async()=>{
         if(user)
         {
         await EnrollCourse(courseDetail.id,user.primaryEmailAddress.emailAddress)
         .then(async(resp)=>{
-            console.log("EnrollCourseResp=>",resp);
             if(resp)
             {
                 await PublishCourse(resp?.createUserEnrollCourse?.id)
                 .then(result=>{
-                    console.log(result);
                     if(result)
                     {
                         courseDetail.totalChapters?

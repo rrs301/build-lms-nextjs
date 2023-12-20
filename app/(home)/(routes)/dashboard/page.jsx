@@ -15,7 +15,6 @@ function Dashboard() {
     const getUserCourse=async()=>{
         await GetUserCourseList(user.primaryEmailAddress.emailAddress)
         .then(resp=>{
-            console.log(resp?.userEnrollCourses)
             if(resp)
                 setUserCourseList(resp?.userEnrollCourses)
         })
