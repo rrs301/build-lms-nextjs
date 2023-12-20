@@ -32,12 +32,13 @@ function Browse() {
     })
   }
   const getCourses=()=>{
-    trackEvent('user-home', { userEmail:user?.primaryEmailAddress?.emailAddress });
     getCourseList().then(resp=>{
       console.log(resp);
       setCourses(resp.courseLists);
       setCoursesOrg(resp.courseLists)
     })
+    trackEvent('user-home', { userEmail:user?.primaryEmailAddress?.emailAddress });
+
   }
 
   const filterCourse=(category)=>{

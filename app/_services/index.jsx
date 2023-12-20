@@ -5,7 +5,7 @@ const MASTER_URL="https://api-us-east-1-shared-usea1-02.hygraph.com/v2/cloc96djl
 export const getCourseList=async()=>{
     const query=gql`
     query courseList {
-        courseLists(orderBy: publishedAt_DESC) {
+        courseLists(orderBy: publishedAt_DESC,first:20) {
           name
           banner {
             url
