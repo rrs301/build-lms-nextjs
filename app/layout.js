@@ -40,7 +40,12 @@ OneSignalDeferred.push(function(OneSignal) {
       <UserMembershipContext.Provider 
       value={{userMembership,setUserMembership}}>
     <html lang="en">
-      
+    <head>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390876057681623"
+     crossorigin="anonymous"></script>
+          {/* Add the OneSignal SDK script */}
+          <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async />
+        </head>
       <body className={inter.className}>
       <AptabaseProvider appKey="A-US-6917308331">
         {children}
