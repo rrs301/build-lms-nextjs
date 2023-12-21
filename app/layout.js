@@ -41,10 +41,11 @@ OneSignalDeferred.push(function(OneSignal) {
       value={{userMembership,setUserMembership}}>
     <html lang="en">
     <head>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390876057681623"
+      
+      <script async src={"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="+process.env.NEXT_PUBLIC_GOOGLE_ADS_KEY}
      crossorigin="anonymous"></script>
           {/* Add the OneSignal SDK script */}
-          <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async />
+          {/* <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async /> */}
         </head>
       <body className={inter.className}>
       <AptabaseProvider appKey="A-US-6917308331">
