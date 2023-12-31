@@ -126,7 +126,7 @@ export const markChapterCompleted=async(recordId,chapterNumber)=>{
 export const GetUserCourseList=async(userEmail)=>{
   const query=gql`
   query UserCourseList {
-    userEnrollCourses(where: {userEmail: "`+userEmail+`"}) {
+    userEnrollCourses(orderBy: updatedAt_DESC,where: {userEmail: "`+userEmail+`"}) {
       courseList {
         banner {
           url
