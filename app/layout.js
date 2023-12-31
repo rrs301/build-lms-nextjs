@@ -51,6 +51,14 @@ OneSignalDeferred.push(function(OneSignal) {
       <AptabaseProvider appKey="A-US-6917308331">
         {children}
         </AptabaseProvider>
+        
+        <script data-name="BMC-Widget" data-cfasync="false" 
+        src={process.env.NEXT_PUBLIC_BUY_ME_COFFEE_URL} 
+        data-id="tubegurujiw" 
+        data-description="Support me on Buy me a coffee!" 
+        data-message="Thank you for visiting now you can join as membership to access all course and Source Code Free" 
+        data-color="#40DCA5" data-position="Right" 
+        data-x_margin="18" data-y_margin="18"></script>
         </body>
     </html>
     </UserMembershipContext.Provider>
