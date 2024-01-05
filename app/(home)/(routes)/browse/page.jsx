@@ -15,7 +15,7 @@ function Browse() {
   const {userMembership,setUserMembership}=useContext(UserMembershipContext);
   useEffect(()=>{
     getCourses()
-    user&&getUserSubscription_();
+    //user&&getUserSubscription_();
     
   },[user])
 
