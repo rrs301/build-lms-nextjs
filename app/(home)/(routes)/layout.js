@@ -5,6 +5,7 @@ import Header from './../_components/Header'
 import GlobalApi from '../../_services/GlobalApi';
 import { UserMembershipContext } from '../../_context/UserMembershipContext';
 import { useUser } from '@clerk/nextjs';
+import { GetAllMembers } from '../../_services';
 
 function homeLayout({children}) {
   const [toggleSideBar,setToggleSideBar]=useState(false);
@@ -13,26 +14,35 @@ function homeLayout({children}) {
   const {userMembership,setUserMembership}
   =useContext(UserMembershipContext);
   useEffect(()=>{
-    user&&getUserSubscription_(1);
+    user&&getUserSubscription_();
   },[user])
-  const getUserSubscription_= (pageNumber=1)=>{
-    GlobalApi.getUserSubscription(pageNumber)
-    .then(resp=>{
-    const data= resp.data.data.find(item=>item.payer_email==user.primaryEmailAddress.emailAddress);
-    if(data)
-     {
-       
-       setUserMembership(true)
-     }
-     else{
-     
-      if(resp?.data?.last_page>=pageNumber+1)
+  const getUserSubscription_= ()=>{
+    GetAllMembers().then(resp=>{
+       console.log(resp.memberships)
+      const data=resp.memberships.find(item=>item.email==user.primaryEmailAddress.emailAddress)
+      console.log(data)
+      if(data)
       {
-       
-        getUserSubscription_(pageNumber+1)
+        setUserMembership(true)
       }
-     }
-   })
+    })
+  //   GlobalApi.getUserSubscription(pageNumber)
+  //   .then(resp=>{
+  //   const data= resp.data.data.find(item=>item.payer_email==user.primaryEmailAddress.emailAddress);
+  //   if(data)
+  //    {
+       
+  //      setUserMembership(true)
+  //    }
+  //    else{
+     
+  //     if(resp?.data?.last_page>=pageNumber+1)
+  //     {
+       
+  //       getUserSubscription_(pageNumber+1)
+  //     }
+  //    }
+  //  })
  }
   return (
     <div>

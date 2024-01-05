@@ -148,4 +148,18 @@ export const GetUserCourseList=async(userEmail)=>{
 
 }
 
+export const GetAllMembers=async()=>{
+  const query=gql`
+  query GetAllMembers {
+    memberships(where: {active: true},first: 1000) {
+      email
+      id
+      joinDate
+    }
+  }
+  `
+  const result=await request(MASTER_URL,query);
+  return result;
+}
+
 
